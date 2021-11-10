@@ -8,7 +8,9 @@ def init_board():
             ]
     return board
 
-    
+
+def print_board(board):
+    print(f"  1   2   3\nA {' | '.join(board[0])}\n ---+---+---\nB {' | '.join(board[1])}\n ---+---+---\nC {' | '.join(board[2])}")
 
 
 def start_player():
@@ -58,6 +60,18 @@ def get_move():
 #start_player()
 
 
+def new_game():
+    #while 
+    nxt =input("Do you want to play again? (Y/N): ").upper()
+    if nxt in ["Y"]:
+        main()
+    elif nxt in ["N"]:
+        print("Good bye, brother!")     
+        quit()
+    else:
+        print("Enter a correct input! ")
+
+
 def main():
     winner = False
     actual = start_player()
@@ -79,4 +93,5 @@ def main():
         
     
 
-main()
+if __name__ == '__main__':
+    main()
