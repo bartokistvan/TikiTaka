@@ -56,6 +56,28 @@ def get_move():
             print("This is not a valid coordinate! Please give a valid coordinate! ")
         print(coord)
 
+def won(board):
+    solution = [
+
+        board[0][0], board[0][1], board[0][2],  #row
+        board[1][0], board[1][1], board[1][2],
+        board[2][0], board[2][1], board[2][2],
+        
+        board[0][0], board[1][0], board[2][0],  #col
+        board[0][1], board[1][1], board[2][1],
+        board[0][2], board[1][2], board[2][2],
+
+        board[0][0], board[1][1], board[2][2],  #keresztbe
+        board[2][0], board[1][1], board[0][2],
+        
+         ]
+
+    if ["X", "X", "X"] in solution or ["O", "O", "O"] in solution:
+        return True
+
+    else:
+        return False
+
 #get_move()
 #start_player()
 
@@ -77,10 +99,12 @@ def main():
     actual = start_player()
     while not winner:
         if actual == "X":
+            print("Next player O ")
             actual = "O"
         else:
+            print("Next player X ")
             actual = "X"
-        print(actual)
+        
 
 #board print
 #ask next coordinate
