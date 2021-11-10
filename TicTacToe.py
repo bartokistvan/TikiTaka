@@ -54,7 +54,7 @@ def get_move():
             coord = [2,2]
         else:
             print("This is not a valid coordinate! Please give a valid coordinate! ")
-        print(coord)
+    return coord
 
 def won(board):
     solution = [
@@ -95,15 +95,28 @@ def new_game():
 
 
 def main():
+    board = init_board()
+
+
     winner = False
     actual = start_player()
     while not winner:
+        print_board(board)
+        while True:
+            move = get_move()
+            if board [move [0]][move[1]] == ".":
+                board [move [0]][move[1]] = actual
+                break
+
+    
+        
         if actual == "X":
-            print("Next player O ")
+            print("Next player: O ")
             actual = "O"
         else:
-            print("Next player X ")
+            print("Next player: X ")
             actual = "X"
+    
         
 
 #board print
