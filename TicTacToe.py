@@ -104,6 +104,7 @@ def main():
         print_board(board)
         while True:
             move = get_move()
+            print("Occupied!")
             if board [move [0]][move[1]] == ".":
                 board [move [0]][move[1]] = actual
                 break
