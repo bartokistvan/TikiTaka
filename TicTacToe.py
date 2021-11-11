@@ -27,7 +27,6 @@ def start_player():
         print(f"Player One: {player2} will start the game.") 
 
         return "O"
-
        
     
 def get_move():
@@ -56,19 +55,20 @@ def get_move():
             print("This is not a valid coordinate! Please give a valid coordinate! ")
     return coord
 
+
 def won(board):
     solution = [
 
-        board[0][0], board[0][1], board[0][2],  #row
-        board[1][0], board[1][1], board[1][2],
-        board[2][0], board[2][1], board[2][2],
+        [board[0][0], board[0][1], board[0][2]],  #row
+        [board[1][0], board[1][1], board[1][2]],
+        [board[2][0], board[2][1], board[2][2]],
         
-        board[0][0], board[1][0], board[2][0],  #col
-        board[0][1], board[1][1], board[2][1],
-        board[0][2], board[1][2], board[2][2],
+        [board[0][0], board[1][0], board[2][0]],  #col
+        [board[0][1], board[1][1], board[2][1]],
+        [board[0][2], board[1][2], board[2][2]],
 
-        board[0][0], board[1][1], board[2][2],  #keresztbe
-        board[2][0], board[1][1], board[0][2],
+        [board[0][0], board[1][1], board[2][2]],  #keresztbe
+        [board[2][0], board[1][1], board[0][2]],
         
          ]
 
@@ -76,10 +76,15 @@ def won(board):
         return True
 
     else:
-        return False
+        return False    
 
-#get_move()
-#start_player()
+
+def is_full(board):
+    for row in board:
+        for item in row:
+            if item == ".":
+                return False
+    return True
 
 
 def new_game():
@@ -94,42 +99,69 @@ def new_game():
         print("Enter a correct input! ")
 
 
+def win_case(actual):
+    print(f"Player {actual} won the game!")   
+
+
 def main():
     board = init_board()
-
-
-    winner = False
     actual = start_player()
-    while not winner:
-        print_board(board)
-        while True:
+    while not is_full(board):
+        if clear_board(board):
+            print_board(board)
             move = get_move()
-            print("Occupied!")
             if board [move [0]][move[1]] == ".":
                 board [move [0]][move[1]] = actual
-                break
-
-    
-        
-        if actual == "X":
-            print("Next player: O ")
-            actual = "O"
+                print_board(board)
+            else:
+                continue
+            if actual == "X":
+                print("Next player: O ")
+                actual = "O"
+            else:
+                print("Next player: X ")
+                actual = "X"
         else:
-            print("Next player: X ")
-            actual = "X"
-    
+            move = get_move()
+            if board [move [0]][move[1]] == ".":
+                board [move [0]][move[1]] = actual
+                print_board(board)
+                if won(board):
+                    win_case(actual)
+                    break
+                else:
+                    if actual == "X":
+                        print("Next player: O ")
+                        actual = "O"
+                    else:
+                        print("Next player: X ")
+                        actual = "X"
+            else:
+                continue
+def clear_board(board):
+    fields = [
+
+        board[0][0], board[0][1], board[0][2],  #row
+        board[1][0], board[1][1], board[1][2],
+        board[2][0], board[2][1], board[2][2],
+
+        board[0][0], board[1][0], board[2][0],  #col
+        board[0][1], board[1][1], board[2][1],
+        board[0][2], board[1][2], board[2][2],
+
+        board[0][0], board[1][1], board[2][2],  #keresztbe
+        board[2][0], board[1][1], board[0][2],
+
+         ]
+    if "X" not in fields and "O" not in fields:
+        return True
+    else:
+        return False
+
         
-
-#board print
-#ask next coordinate
-#check coord is emopty
-#add to board
-#check board is full or winner
-
+ 
+        
                 
         
-        
-    
-
 if __name__ == '__main__':
     main()
