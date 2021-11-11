@@ -104,6 +104,22 @@ def win_case(actual):
 
 
 def main():
+    print("""
+    
+  _______            __                   __           
+ /_  __(_)____      / /_____ ______      / /_____  ___ 
+  / / / / ___/_____/ __/ __ `/ ___/_____/ __/ __ \/ _ \\
+ / / / / /__/_____/ /_/ /_/ / /__/_____/ /_/ /_/ /  __/
+/_/ /_/\___/      \__/\__,_/\___/      \__/\____/\___/ 
+    
+    """)
+    print("""Welcome!
+    
+    """)
+    print("""If you want to leave... never mind you can't. 
+    You have to play with this (˘ε˘)
+    
+    """)
     board = init_board()
     actual = start_player()
     while not is_full(board):
@@ -128,6 +144,7 @@ def main():
                 print_board(board)
                 if won(board):
                     win_case(actual)
+                    new_game()
                     break
                 else:
                     if actual == "X":
