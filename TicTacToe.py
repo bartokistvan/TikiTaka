@@ -1,4 +1,5 @@
 import random
+import os
 
 def init_board():
     board = [
@@ -103,23 +104,7 @@ def win_case(actual):
     print(f"Player {actual} won the game!")   
 
 
-def main():
-    print("""
-    
-  _______            __                   __           
- /_  __(_)____      / /_____ ______      / /_____  ___ 
-  / / / / ___/_____/ __/ __ `/ ___/_____/ __/ __ \/ _ \\
- / / / / /__/_____/ /_/ /_/ / /__/_____/ /_/ /_/ /  __/
-/_/ /_/\___/      \__/\__,_/\___/      \__/\____/\___/ 
-    
-    """)
-    print("""Welcome!
-    
-    """)
-    print("""If you want to leave... never mind you can't. 
-    You have to play with this (˘ε˘)
-    
-    """)
+def game_logic():
     board = init_board()
     actual = start_player()
     while not is_full(board):
@@ -128,6 +113,8 @@ def main():
             move = get_move()
             if board [move [0]][move[1]] == ".":
                 board [move [0]][move[1]] = actual
+                print_board(board)
+                os.system("cls")
                 print_board(board)
             else:
                 continue
@@ -174,6 +161,29 @@ def clear_board(board):
         return True
     else:
         return False
+
+
+def main():
+
+    print("""
+    
+  _______            __                   __           
+ /_  __(_)____      / /_____ ______      / /_____  ___ 
+  / / / / ___/_____/ __/ __ `/ ___/_____/ __/ __ \/ _ \\
+ / / / / /__/_____/ /_/ /_/ / /__/_____/ /_/ /_/ /  __/
+/_/ /_/\___/      \__/\__,_/\___/      \__/\____/\___/ 
+    
+    """)
+    
+    print("Welcome!\n \n1. Start the game: (HUMAN vs HUMAN) \n2. Quit ")
+    while True:
+        chose_mode = str(input())
+        if chose_mode == "1":
+            game_logic()
+        elif chose_mode == "2":
+            quit()
+        else:
+            print("Not a valid input. Give a valid!")
 
         
  
