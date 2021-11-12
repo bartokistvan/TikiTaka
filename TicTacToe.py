@@ -85,6 +85,7 @@ def is_full(board):
         for item in row:
             if item == ".":
                 return False
+    print("Tie!")
     return True
 
 
@@ -113,7 +114,7 @@ def game_logic():
             move = get_move()
             if board [move [0]][move[1]] == ".":
                 board [move [0]][move[1]] = actual
-                print_board(board)
+                # print_board(board)
                 os.system("cls")
                 print_board(board)
             else:
@@ -128,7 +129,10 @@ def game_logic():
             move = get_move()
             if board [move [0]][move[1]] == ".":
                 board [move [0]][move[1]] = actual
+                os.system("cls")
                 print_board(board)
+                if is_full(board):
+                    new_game()
                 if won(board):
                     win_case(actual)
                     new_game()
